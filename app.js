@@ -1,13 +1,26 @@
+require('dotenv').config()
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var indexRouter = require('./routes/index.js');
 var usersRouter = require('./routes/users.js');
 
 var app = express();
+
+const Helper = require('./models/helper.js');
+const Patient = require('./models/patient.js');
+const Appointments = require('./models/appointment.js');
+mongoose.connect(process.env.MONGODB_URI);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
