@@ -6,11 +6,26 @@
     "start": "PORT=3001 node ./bin/www"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
-  }
+    "morgan": "~1.9.0",
+    "request": "^2.87.0"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egarrett94/careconnect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egarrett94/careconnect/issues"
+  },
+  "homepage": "https://github.com/egarrett94/careconnect#readme",
+  "description": ""
 }
