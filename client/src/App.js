@@ -20,7 +20,7 @@ class App extends Component {
       this.setState({poem: res.data[0].lines})
     }).catch(err => console.log(err));
     
-    axios.get('/users/users')
+    axios.get('/auth')
     .then(res => {
       this.setState({users: res.data})
     }).catch(err => console.log(err));

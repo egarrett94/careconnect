@@ -21,6 +21,10 @@ var appointmentSchema = new mongoose.Schema({
   status: {
     type: Boolean,
     default: false
+  },
+  hours: {
+    type: Number,
+    default: 0
   }
 })
 
