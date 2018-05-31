@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 import Signup from './Signup.js';
+import UserProfile from './UserProfile.js';
+import Login from './Login.js';
 
 class App extends Component {
   
@@ -59,9 +61,9 @@ class App extends Component {
   }
 
 
-// <UserProfile user={this.state.user} logout={this.logout} />
-  render() {
 
+  render() {
+    
     let theUser = this.state.user
     //if the type of theUser is an object and there's a length,
     //then the user is logged in and can see the user profile + logout link. 
@@ -69,13 +71,14 @@ class App extends Component {
     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
       return (
         <div>
-        user logged in
-          
+          user logged in
+          <UserProfile user={this.state.user} logout={this.logout} />
         </div>
       )
     } else {
       return (
         <div className="App">
+          <Login liftToken={this.liftTokenToState}/>
           <Signup liftToken={this.liftTokenToState}/>
         </div>
       )

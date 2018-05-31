@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 
 //gotta post the data otherwise plaintext username/pass
 //would be available 
-router.post('/login/helper', (req, res, next) => {
+router.post('/login', (req, res, next) => {
 	let hashedPass = ''
 	let passwordMatch = false
 
@@ -40,33 +40,45 @@ router.post('/login/helper', (req, res, next) => {
 				message: 'email or password is incorrect.'
 			});
 		};
-	});
-});
+	}).then(function(err, user) {
+		if (err) {
+			Patient.findOne({email: req.body.email}).then( function(user, err) {
+				hashedPass = user.password
+				//compare hashedPass to submitted password
+				passwordMatch = bcrypt.compareSync(req.body.password, hashedPass)
+				if (passwordMatch) {
+					//the passwords match, make a token
 
-router.post('/login/patient', (req, res, next) => {
-	let hashedPass = ''
-	let passwordMatch = false
+					var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
+						expiresIn: 60*60*24 // expires in 24 hours
+					})
 
-	//look up the user
-	Patient.findOne({email: req.body.email}).then( function(user, err) {
-		hashedPass = user.password
-		//compare hashedPass to submitted password
-		passwordMatch = bcrypt.compareSync(req.body.password, hashedPass)
-		if (passwordMatch) {
-			//the passwords match, make a token
-
-			var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
-				expiresIn: 60*60*24 // expires in 24 hours
+					res.json({user, token})
+				} else {
+					//the passwords don't match
+					console.log('passwords dont match')
+					res.status(401).json({
+						error: true,
+						message: 'email or password is incorrect.'
+					});
+				};
+			}).then(function(err, user) {
+				if (err) {
+					res.send(err)
+				} else {
+					var token = jwt.sign(user, process.env.JWT_SECRET, {
+						expiresIn: 60*60*24
+					})
+					//sends json object
+					res.json({user, token})
+				}
 			})
-
-			res.json({user, token})
 		} else {
-			//the passwords don't match
-			console.log('passwords dont match')
-			res.status(401).json({
-				error: true,
-				message: 'email or password is incorrect.'
-			});
+			var token = jwt.sign(user, process.env.JWT_SECRET, {
+				expiresIn: 60*60*24
+			})
+			//sends json object
+			res.json({user, token})
 		};
 	});
 });
