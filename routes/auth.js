@@ -73,57 +73,61 @@ router.post('/login/patient', (req, res, next) => {
 
 router.post('/signup', (req, res, next) => {
 	//if helper selected
-	Helper.findOne({email: req.body.email}).then( function(err, user) {
-		if (user) { 
-			res.redirect('/auth/signup')
-		} else {
-			Helper.create({
-				firstName: req.body.firstName,
-				lastName: req.body.lastName,
-				location: req.body.zip,
-				email: req.body.email,
-				password: req.body.password,
-				gender: req.body.gender,
-				age: req.body.age
-			}).then( function(err, user) {
-				if (err) {
-					res.send(err)
-				} else {
-					var token = jwt.sign(user, process.env.JWT_SECRET, {
-						expiresIn: 60*60*24
-					})
-					//sends json object
-					res.json({user, token})
-				};
-			});
-		};
-	});
-	//if patient selected
-	// Patient.findOne({email: req.body.email}).then( function(err, user) {
-	// 	if (user) { 
-	// 		res.redirect('/auth/signup')
-	// 	} else {
-	// 		Patient.create({
-	// 			firstName: req.body.firstName,
-	// 			lastName: req.body.lastName,
-	// 			location: req.body.zip,
-	// 			email: req.body.email,
-	// 			password: req.body.password,
-	// 			gender: req.body.gender,
-	// 			age: req.body.age
-	// 		}).then( function(err, user) {
-	// 			if (err) {
-	// 				res.send(err)
-	// 			} else {
-	// 				var token = jwt.sign(user, process.env.JWT_SECRET, {
-	// 					expiresIn: 60*60*24
-	// 				})
-	// 				//sends json object
-	// 				res.json({user, token})
-	// 			};
-	// 		});
-	// 	};
-	// });
+	if (req.body.selectedType === 'helper') {
+		Helper.findOne({email: req.body.email}).then( function(err, user) {
+			if (user) { 
+				res.redirect('/auth/signup')
+			} else {
+				Helper.create({
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					location: parseInt(req.body.zip),
+					email: req.body.email,
+					password: req.body.password,
+					gender: req.body.gender,
+					age: parseInt(req.body.age)
+				}).then( function(err, user) {
+					if (err) {
+						res.send(err)
+					} else {
+						var token = jwt.sign(user, process.env.JWT_SECRET, {
+							expiresIn: 60*60*24
+						})
+						//sends json object
+						res.json({user, token})
+					};
+				});
+			};
+		});
+	} else {
+
+		//if patient selected
+		Patient.findOne({email: req.body.email}).then( function(err, user) {
+			if (user) { 
+				res.redirect('/auth/signup')
+			} else {
+				Patient.create({
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					location: parseInt(req.body.zip),
+					email: req.body.email,
+					password: req.body.password,
+					gender: req.body.gender,
+					age: parseInt(req.body.age)
+				}).then( function(err, user) {
+					if (err) {
+						res.send(err)
+					} else {
+						var token = jwt.sign(user, process.env.JWT_SECRET, {
+							expiresIn: 60*60*24
+						})
+						//sends json object
+						res.json({user, token})
+					};
+				});
+			};
+		});
+	}
 });
 
 router.post('/me/from/token', (req, res, next) => {

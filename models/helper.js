@@ -34,11 +34,11 @@ var helperSchema = new mongoose.Schema({
   },
   services: {
     type: String,
-    required: true
+    default: null
   },
   zipcode: {
     type: Number,
-    required: true
+    default: null
   },
   bio: {
     type: String,
