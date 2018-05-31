@@ -34,19 +34,18 @@ var patientSchema = new mongoose.Schema({
   },
   needs: {
     type: String,
-    required: true
+    default: null
   },
   zipcode: {
-    type: Number,
-    required: true
+    type: Number
   },
   bio: {
     type: String,
-    required: true
+    default: 'No Bio'
   },
   availability: {
     type: String,
-    required: true
+    default: 'N/A'
   },
   appointments: [{
     type: ObjectId,
@@ -59,7 +58,15 @@ patientSchema.set('toJSON', {
     let returnJson = {
       _id: ret._id,
       email: ret.email,
-      name: ret.name,
+      firstName: ret.firstName,
+      lastName: ret.lastName,
+      gender: ret.gender,
+      bio: ret.bio,
+      age: ret.age,
+      availability: ret.availability,
+      needs: ret.needs,
+      appointments: ret.appointments,
+      zipcode: ret.zipcode
     }
     return returnJson
   }

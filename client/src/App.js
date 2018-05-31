@@ -4,7 +4,8 @@ import axios from 'axios';
 import './App.css';
 import Signup from './Signup.js';
 import UserProfile from './UserProfile.js';
-import Login from './Login.js';
+import HelperLogin from './HelperLogin.js';
+import PatientLogin from './PatientLogin.js';
 
 class App extends Component {
   
@@ -63,6 +64,7 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.user)
     
     let theUser = this.state.user
     //if the type of theUser is an object and there's a length,
@@ -78,7 +80,8 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-          <Login liftToken={this.liftTokenToState}/>
+          <HelperLogin liftToken={this.liftTokenToState}/>
+          <PatientLogin liftToken={this.liftTokenToState}/>
           <Signup liftToken={this.liftTokenToState}/>
         </div>
       )

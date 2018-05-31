@@ -37,8 +37,7 @@ var helperSchema = new mongoose.Schema({
     default: null
   },
   zipcode: {
-    type: Number,
-    default: null
+    type: Number
   },
   bio: {
     type: String,
@@ -63,7 +62,16 @@ helperSchema.set('toJSON', {
     let returnJson = {
       _id: ret._id,
       email: ret.email,
-      name: ret.name,
+      firstName: ret.firstName,
+      lastName: ret.lastName,
+      gender: ret.gender,
+      bio: ret.bio,
+      age: ret.age,
+      availability: ret.availability,
+      services: ret.services,
+      hours: ret.hours,
+      appointments: ret.appointments,
+      zipcode: ret.zipcode
     }
     return returnJson
   }

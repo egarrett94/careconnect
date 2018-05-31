@@ -13,7 +13,7 @@ class Signup extends Component {
 			age: 0,
 			location: 0,
 			gender: '',
-			selectedType: 'helper'
+			selectedType: ''
 		}
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
 		this.handleLastNameChange = this.handleLastNameChange.bind(this)
@@ -22,7 +22,7 @@ class Signup extends Component {
 		this.handleLocationChange = this.handleLocationChange.bind(this)
 		this.handleAgeChange = this.handleAgeChange.bind(this)
 		this.handleGenderChange = this.handleGenderChange.bind(this)
-
+		this.handleRadioChange = this.handleRadioChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
@@ -61,10 +61,15 @@ class Signup extends Component {
 			gender: e.target.value
 		})
 	}
-
+	handleRadioChange(e) {
+		this.setState({
+			selectedType: e.target.value
+		})
+	}
 
 	handleSubmit(e) {
 		e.preventDefault()
+		console.log(this.state.selectedType)
 		axios.post('/auth/signup', {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
@@ -96,20 +101,25 @@ class Signup extends Component {
 				<div className='col s12 m8 offset-m2'>
 					<form className="signup" onSubmit={this.handleSubmit}>
 						
-						<span>First Name: </span><input type='text' value={this.state.firstName} onChange={this.handleFirstNameChange} /><br/>
-						<span>Last Name: </span><input type='text' value={this.state.lastName} onChange={this.handleLastNameChange} /><br/>
-						<span>Zip Code: </span><input type='text' value={this.state.location} onChange={this.handleLocationChange} /><br/>
-						<span>Gender: </span><input type='text' value={this.state.gender} onChange={this.handleGenderChange} /><br/>
-						<span>Age: </span><input type='text' value={this.state.age} onChange={this.handleAgeChange} /><br/>
-						<span>Email: </span><input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br/>
-						<span>Password: </span><input type='password' value={this.state.password} onChange={this.handlePasswordChange} />
+						<p><span>First Name: </span><input type='text' value={this.state.firstName} onChange={this.handleFirstNameChange} label="First Name" /></p><br/>
+						<p><span>Last Name: </span><input type='text' value={this.state.lastName} onChange={this.handleLastNameChange} /></p><br/>
+						<p><span>Zip Code: </span><input type='text' value={this.state.location} onChange={this.handleLocationChange} /></p>
+						<p>Gender: <Input s={12} type='select' value={this.state.gender} onChange={this.handleGenderChange}>
+							  <option value="woman">Woman</option>
+							  <option value="man">Man</option>
+							  <option value="non-binary">Non-Binary</option>
+							  <option value="genderfluid">Genderfluid</option>
+							 </Input></p><br/><br/>
+						<p><span>Age: </span><input type='text' value={this.state.age} onChange={this.handleAgeChange} /></p><br/>
+						<p><span>Email: </span><input type='text' value={this.state.email} onChange={this.handleEmailChange} /></p><br/>
+						<p><span>Password: </span><input type='password' value={this.state.password} onChange={this.handlePasswordChange} /></p>
 						
 						<div className='radio-buttons'>
 							<span>I'm signing up as a: </span> <br/>
-								<Input className='browser-default' type='radio' name='typeofuser' value='helper' checked={this.state.selectedType === 'helper'} label="Helper!" />
-								<Input className='browser-default' type='radio' name='typeofuser' value='patient' checked={this.state.selectedType === 'patient'} label="Patient!" /> <br />
+								<Input type='radio' name='typeofuser' value='helper' checked={this.state.selectedType === 'helper'} onChange={this.handleRadioChange} label="Helper!" />
+								<Input type='radio' name='typeofuser' value='patient' checked={this.state.selectedType === 'patient'} onChange={this.handleRadioChange} label="Patient!" /> <br />
 						</div>
-						<input type='submit' value='Sign Up!' />
+						<input type='submit' className='btn waves-effect waves-light pink' value='Sign Up!' />
 					</form>
 				</div>
 			</div>

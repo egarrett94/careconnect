@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Login extends Component {
+class PatientLogin extends Component {
 	constructor(props) {
 		super(props) 
 		this.state = {
@@ -26,7 +26,7 @@ class Login extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault()
-		axios.post('/auth/login', {
+		axios.post('/auth/login/patient', {
 			email: this.state.email,
 			password: this.state.password
 		}).then(result => {
@@ -44,6 +44,7 @@ class Login extends Component {
 
 		return(
 			<form className="login" onSubmit={this.handleSubmit}>
+				<h4>Patient Login: </h4>
 				Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br/>
 				Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} />
 				<input type='submit' value='Log In!' />
@@ -53,4 +54,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default PatientLogin;
