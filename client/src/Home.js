@@ -4,7 +4,6 @@ class Home extends Component {
 	
 	constructor(props) {
 		super(props);
-
 		
 	}
 	
@@ -15,8 +14,7 @@ class Home extends Component {
 		return(
 
 		<div>
-
-			dix
+			titty
 
 		</div>
 

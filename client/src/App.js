@@ -6,6 +6,12 @@ import Signup from './Signup.js';
 import UserProfile from './UserProfile.js';
 import HelperLogin from './HelperLogin.js';
 import PatientLogin from './PatientLogin.js';
+import Home from './Home.js';
+import Nav from './Nav.js';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 
 class App extends Component {
   
@@ -61,32 +67,49 @@ class App extends Component {
     }
   }
 
-
-
   render() {
-    console.log(this.state.user)
-    
-    let theUser = this.state.user
-    //if the type of theUser is an object and there's a length,
-    //then the user is logged in and can see the user profile + logout link. 
-    //otherwise it shows the log in / sign up link 
-    if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
-      return (
+
+    return(
+      <Router> 
         <div>
-          user logged in
-          <UserProfile user={this.state.user} logout={this.logout} />
+          <Nav />
+          <Route exact path='/' render={() => <Home liftToken={this.liftTokenToState} user={this.state.user} logout={this.logout} />} />
+          <Route exact path='/login/helper' render={() => <HelperLogin liftToken={this.liftTokenToState} />} />
+          <Route exact path='/login/patient' render={() => <PatientLogin liftToken={this.liftTokenToState} />} />
+          <Route exact path='/profile' render={() => <UserProfile user={this.state.user} logout={this.logout} />} />
+          <Route exact path='/signup' render={() => <Signup liftToken={this.liftTokenToState} />} />
         </div>
-      )
-    } else {
-      return (
-        <div className="App">
-          <HelperLogin liftToken={this.liftTokenToState}/>
-          <PatientLogin liftToken={this.liftTokenToState}/>
-          <Signup liftToken={this.liftTokenToState}/>
-        </div>
-      )
-    }
+      </Router>
+    )
+
   }
+
 }
+
+//   render() {
+//     console.log(this.state.user)
+    
+//     let theUser = this.state.user
+//     //if the type of theUser is an object and there's a length,
+//     //then the user is logged in and can see the user profile + logout link. 
+//     //otherwise it shows the log in / sign up link 
+//     if (typeof theUser === 'object' && Object.keys(theUser).length > 0) {
+//       return (
+//         <div>
+//           user logged in
+//           <UserProfile user={this.state.user} logout={this.logout} />
+//         </div>
+//       )
+//     } else {
+//       return (
+//         <div className="App">
+//           <HelperLogin liftToken={this.liftTokenToState}/>
+//           <PatientLogin liftToken={this.liftTokenToState}/>
+//           <Signup liftToken={this.liftTokenToState}/>
+//         </div>
+//       )
+//     }
+//   }
+// }
 
 export default App;
