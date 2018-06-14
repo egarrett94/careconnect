@@ -15,7 +15,7 @@ class Nav extends Component {
 
 	render(){
 		return(
-			<Navbar className='yellow darken-2 right'>
+			<Navbar className='cyan lighten-3 right z-depth-0'>
 				<li><Link to='/'>Home</Link></li>
 		        <li><Link to='/helpers'>Helper Portal</Link></li>
 		        <li><Link to='/patients'>Patient Portal</Link></li>
