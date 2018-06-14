@@ -1,5 +1,27 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.mainpage, .maininfo {
+	padding: 0!important;
+	margin: 0!important;
+}
+
+.selecticon {
+	width: 175px;
+	height: auto;
+	margin-top: 60px;
+}
+
+.typeselect {
+	margin: 0;
+	width: 100vw;
+	background-color: lightgrey;
+	text-align: center;
+}
+
+.homeimage {
+	height: 75vh;
 }

@@ -19,8 +19,7 @@ class Nav extends Component {
 				<li><Link to='/'>Home</Link></li>
 		        <li><Link to='/helpers'>Helper Portal</Link></li>
 		        <li><Link to='/patients'>Patient Portal</Link></li>
-		        <li><Link to='/about'>About Us</Link></li>
-				<li><Link to='/login'>Log In</Link></li>
+		        <li><Link to='/about'>About The Developer</Link></li>
 			</Navbar>
 	
 		)
