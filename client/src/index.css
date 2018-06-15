@@ -14,6 +14,25 @@ a {
 	color: black;
 }
 
+.social-icons {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	filter: opacity(60%);
+	margin: 0 4px;
+	transition: all .2s ease-in-out;
+}
+
+.mostly-human-developer {
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+}
+
+.about-us-row {
+	background-color: #FF7F2D;
+}
+
 .typeselect a:hover {
 	color: #FF7F2D;
 }
@@ -64,7 +83,7 @@ a {
 	transition: all .2s ease-in-out;
 }
 
-.selecticon:hover {
+.selecticon:hover, .social-icons:hover {
 	transform: scale(1.1);
 }
 

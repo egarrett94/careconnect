@@ -8,6 +8,7 @@ import HelperLogin from './HelperLogin.js';
 import PatientLogin from './PatientLogin.js';
 import PatientPortal from './PatientPortal.js';
 import HelperPortal from './HelperPortal.js';
+import About from './About.js';
 import Home from './Home.js';
 import Nav from './Nav.js';
 import {
@@ -82,6 +83,7 @@ class App extends Component {
           <Route exact path='/login/patient' render={() => <PatientLogin liftToken={this.liftTokenToState} />} />
           <Route exact path='/profile' render={() => <UserProfile user={this.state.user} logout={this.logout} />} />
           <Route exact path='/signup' render={() => <Signup liftToken={this.liftTokenToState} />} />
+          <Route exact path='/about' render={() => <About liftToken={this.liftTokenToState} user={this.state.user} logout={this.logout} />} />
         </div>
       </Router>
     )
