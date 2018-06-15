@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo');
 
+/* dark teal #006064 nav bar */
+/* peach #FF7F2D link highlights */ 
+/* darker orange #B24600 headers */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -11,7 +15,7 @@ a {
 }
 
 .typeselect a:hover {
-	color: #f48fb1;
+	color: #FF7F2D;
 }
 
 .mainpage, .maininfo {
@@ -36,13 +40,20 @@ a {
 	margin-left: 20px;
 }
 
-.maininfotext h5 {
+.maininfotext h5, h4{
+	color: #B24600;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }
 
 @media (max-width: 600px) {
 	.maininfo {
 		display: none;
+	}
+}
+
+@media (min-width: 600px) {
+	.brand-logo {
+		margin-left: 15px;
 	}
 }
 
@@ -73,5 +84,6 @@ a {
 }
 
 .homeimage {
-	height: 65vh;
+	margin-top: -50px;
+	height: 80vh;
 }

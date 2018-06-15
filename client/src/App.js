@@ -6,6 +6,8 @@ import Signup from './Signup.js';
 import UserProfile from './UserProfile.js';
 import HelperLogin from './HelperLogin.js';
 import PatientLogin from './PatientLogin.js';
+import PatientPortal from './PatientPortal.js';
+import HelperPortal from './HelperPortal.js';
 import Home from './Home.js';
 import Nav from './Nav.js';
 import {
@@ -74,6 +76,8 @@ class App extends Component {
         <div>
           <Nav />
           <Route exact path='/' render={() => <Home liftToken={this.liftTokenToState} user={this.state.user} logout={this.logout} />} />
+          <Route exact path='/patients' render={() => <PatientPortal liftToken={this.liftTokenToState} user={this.state.user} logout={this.logout} />} />
+          <Route exact path='/helpers' render={() => <HelperPortal liftToken={this.liftTokenToState} user={this.state.user} logout={this.logout} />} />
           <Route exact path='/login/helper' render={() => <HelperLogin liftToken={this.liftTokenToState} />} />
           <Route exact path='/login/patient' render={() => <PatientLogin liftToken={this.liftTokenToState} />} />
           <Route exact path='/profile' render={() => <UserProfile user={this.state.user} logout={this.logout} />} />

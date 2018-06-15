@@ -43,12 +43,16 @@ class HelperLogin extends Component {
 	render() {
 
 		return(
-			<form className="login" onSubmit={this.handleSubmit}>
-				<h4>Helper Login: </h4>
-				Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br/>
-				Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} />
-				<input type='submit' value='Log In!' />
-			</form>
+			<div className='row'>
+				<div className='col s12 m6 offset-m3'>
+					<form className="login" onSubmit={this.handleSubmit}>
+						<h4>Helper Login: </h4>
+						Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br/>
+						Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} />
+						<input className='btn waves-effect waves-light cyan darken-1' type='submit' value='Log In!' />
+					</form>
+				</div>
+			</div>
 		)
 
 	}
