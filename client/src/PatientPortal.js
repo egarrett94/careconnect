@@ -15,8 +15,6 @@ class PatientPortal extends Component {
 		)
 
 	}
-
-
 }
 
 export default PatientPortal;
